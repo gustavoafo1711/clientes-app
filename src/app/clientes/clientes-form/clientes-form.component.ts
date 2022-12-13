@@ -15,7 +15,7 @@ export class ClientesFormComponent {
     
   }
   
-  clicar(){
-    console.log( this.cliente);
+  onSubmit(){
+    console.log( this.cliente );
   }
 }
