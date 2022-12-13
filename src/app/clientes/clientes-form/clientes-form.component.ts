@@ -9,14 +9,13 @@ import { Cliente } from '../cliente';
 })
 export class ClientesFormComponent {
   cliente: Cliente;
-  nome: string = "Viúva Negra";
-
+  
   constructor(){
     this.cliente = new Cliente();
-    this.cliente.nome = "Arya Stark";
+    
   }
   
   clicar(){
-    console.log('Cliquei!!!')
+    console.log( this.cliente);
   }
 }
