@@ -17,8 +17,8 @@
                         Cliente salvo/atualizado com sucesso!
                     </div>
                     <!--Alerta de Erro-->
-                    <div class="alert alert-danger" role="alert">
-                        A simple danger alert—check it out!
+                    <div class="alert alert-danger" role="alert" *ngFor="let msgErro of errors">
+                        {{ msgErro }}
                     </div>
                 </div>
             </div>

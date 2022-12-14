@@ -11,6 +11,7 @@ import { ClientesService } from '../../clientes.service';
 export class ClientesFormComponent {
   cliente: Cliente;
   success: boolean = false;
+  errors: String[];
 
   
   constructor( private service: ClientesService ){
@@ -22,6 +23,13 @@ export class ClientesFormComponent {
       .salvar(this.cliente)
       .subscribe( reponse => {
         this.success = true;
-    });
+    }, errorResponse => {
+      this.errors = errorResponse.error.errors;
+      
+    }
+    
+
+    
+    );
   }
 }
