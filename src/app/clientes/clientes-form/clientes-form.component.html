@@ -8,6 +8,21 @@
     <div class="container">
         
         <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <!--Criar mensagens de envio do formulário-->
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Alerta de Sucesso-->
+                    <div class="alert alert-success" role="alert" *ngIf="success == true">
+                        Cliente salvo/atualizado com sucesso!
+                    </div>
+                    <!--Alerta de Erro-->
+                    <div class="alert alert-danger" role="alert">
+                        A simple danger alert—check it out!
+                    </div>
+                </div>
+            </div>
+
             <!--ID do Cliente-->
             <div class="row">
                 <div class="col-md-6">
