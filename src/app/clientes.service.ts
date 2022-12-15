@@ -15,12 +15,14 @@ salvar(cliente : Cliente) : Observable<Cliente>{
   return this.http.post<Cliente>('http://localhost:8080/api/clientes', cliente);
 }
 
-/*
-getClientes() : Observable<Cliente[]>{
-  return
-}
-*/
 
+getClientes() : Observable<Cliente[]>{
+  return this.http.get<Cliente[]>('http://localhost:8080/api/clientes');
+}
+
+
+/*
+//Testar sem acesar a API
 getClientes(): Cliente[]{
   let cliente = new Cliente;
   cliente.id = 1;
@@ -29,4 +31,7 @@ getClientes(): Cliente[]{
   cliente.dataCadastro = '17/11/2022'
   return [cliente]
 }
+*/
+
+
 }
