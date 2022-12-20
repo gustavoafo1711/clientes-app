@@ -28,7 +28,6 @@ export class ClientesFormComponent {
   }
   
   ngOnInit(): void{
-
     let params : Observable<Params> = this.activatedRoute.params;
     params.subscribe( urlParams => {
       this.id = urlParams['id'];
@@ -43,20 +42,29 @@ export class ClientesFormComponent {
   }
 
   onSubmit(){
-    this.service
-      .salvar(this.cliente)
-      .subscribe( reponse => {
-        this.success = true;
-        this.errors = [];
-        this.cliente = reponse;
-    }, errorResponse => {
-      this.success = false;
-      this.errors = errorResponse.error.errors;
-      
-    }
-    
+    if(this.id){
+      this.service
+        .atualizar(this.cliente)
+        .subscribe(response => {
+          this.success = true;
+          this.errors = [];
+        }, errorResponse => {
+          this.errors = ['Erro ao atualizar o cliente.']
+        })
 
-    
-    );
+    }else{
+      this.service
+        .salvar(this.cliente)
+        .subscribe( reponse => {
+            this.success = true;
+            this.errors = [];
+            this.cliente = reponse;
+        }, errorResponse => {
+          this.success = false;
+          this.errors = errorResponse.error.errors;
+          
+        }
+      );
+    }
   }
 }
