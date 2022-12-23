@@ -31,10 +31,17 @@
                             <td>{{ cliente.cpf }}</td>
                             <td>{{ cliente.dataCadastro }}</td>
                             <td>
+                                <!--Botão Editar-->
                                 <button class="btn btn-primary" 
                                         routerLink="/clientes-form/{{ cliente.id }}">
                                     <i class="fas fa-pencil-alt"></i> 
                                 </button>
+                                <!--Botão Deletar-->
+                                <button class="btn btn-danger" (click)="preparaDelecao(cliente)" 
+                                        data-toggle="modal" 
+                                        data-target="#modalDelecao">
+                                    <i class="fas fa-trash-alt"></i> 
+                                 </button>
                             </td>
                         </tr>
                     </tbody>
@@ -42,4 +49,24 @@
             </div>
         </div>
 
+        <div id="modalDelecao" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!--Cabeçalho-->
+                    <div class="modal-header">
+                        <h4>Confirmação</h4>
+                    </div>
+                    <!--Corpo do Modal-->
+                    <div class="modal-body" *ngIf="clienteSelecionado">
+                        Confirma a deleção deste cliente? {{ clienteSelecionado.nome }}
+                    </div>
+                    <!--Botões do modal Rodapé-->
+                    <div class="modal-footer">
+                        <button class="btn btn-success">Confirma</button>
+                        <button class="btn btn-default" 
+                                data-dismiss="modal">Cancela</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>

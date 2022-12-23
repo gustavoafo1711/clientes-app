@@ -12,6 +12,7 @@ import { Cliente } from '../cliente';
 export class ClientesListaComponent {
 
   clientes: Cliente[] = [];
+  clienteSelecionado: Cliente;
 
   constructor( private service: ClientesService,
                private router: Router ){ }
@@ -23,6 +24,10 @@ export class ClientesListaComponent {
 
   novoCadastro(){
     this.router.navigate(['/clientes-form']);
+  }
+
+  preparaDelecao(cliente: Cliente){
+    this.clienteSelecionado = cliente;
   }
 
 }
