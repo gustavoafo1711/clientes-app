@@ -5,6 +5,20 @@
     </ol>
     <!--Container-->
     <div class="container">
+        <!--Mensagens de Deleção-->
+        <div class="row">
+            <div class="col-md-12">
+                <!--Alerta de Sucesso-->
+                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                    {{ mensagemSucesso }}
+                </div>
+                <!--Alerta de Erro-->
+                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                    {{ mensagemErro }}
+                </div>
+            </div>
+        </div>
+
         <!--Botão Novo-->
         <div class="row">
             <div class="col-md-2">
@@ -62,9 +76,10 @@
                     </div>
                     <!--Botões do modal Rodapé-->
                     <div class="modal-footer">
-                        <button class="btn btn-success">Confirma</button>
+                        <button class="btn btn-success" (click)="deletarCliente()" 
+                                data-dismiss="modal">Confirmar</button>
                         <button class="btn btn-default" 
-                                data-dismiss="modal">Cancela</button>
+                                data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
