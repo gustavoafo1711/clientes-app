@@ -4,6 +4,20 @@
 </ol>
 <div class="container">
     <form #form="ngForm" (submit)="onSubmit()" >
+
+        <div class="row">
+            <div class="col-md-12">
+                <!--Alerta de Sucesso-->
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Serviço Prestado salvo com sucesso!
+                </div>
+                <!--Alerta de Erro-->
+                <div class="alert alert-danger" role="alert" *ngFor="let msgErro of errors">
+                    {{ msgErro }}
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
