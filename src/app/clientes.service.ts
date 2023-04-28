@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { Cliente } from './clientes/cliente';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,39 +12,28 @@ export class ClientesService {
 
   apiURL: string = environment.apiURLBase + '/api/clientes';
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ){
 
-salvar(cliente : Cliente) : Observable<Cliente>{
-  return this.http.post<Cliente>(`${this.apiURL}`, cliente);
-}
+  }
 
-atualizar(cliente : Cliente) : Observable<any>{
-  return this.http.put<Cliente>(`${this.apiURL}/${cliente.id}`, cliente);
-}
+  salvar(cliente: Cliente) : Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.apiURL}`, cliente);
+  } 
 
-getClientes() : Observable<Cliente[]>{
-  return this.http.get<Cliente[]>(this.apiURL);
-}
+  atualizar(cliente: Cliente) : Observable<any> {
+    return this.http.put<Cliente>(`${this.apiURL}/${cliente.id}`, cliente);
+  } 
 
-getClienteById(id: number) : Observable<Cliente>{
-  return this.http.get<any>(`${this.apiURL}/${id}`);
-}
+  getClientes(): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(this.apiURL);
+  } 
 
-deletar(cliente: Cliente): Observable<any>{
-  return this.http.delete<any>(`${this.apiURL}/${cliente.id}`);
-}
+  getClienteById(id: number): Observable<Cliente>{
+    return this.http.get<any>(`${this.apiURL}/${id}`);
+  }
 
-/*
-//Testar sem acesar a API
-getClientes(): Cliente[]{
-  let cliente = new Cliente;
-  cliente.id = 1;
-  cliente.nome = 'Galadriel';
-  cliente.cpf = '37926099082'
-  cliente.dataCadastro = '17/11/2022'
-  return [cliente]
-}
-*/
-
+  deletar(cliente: Cliente): Observable<any>{
+    return this.http.delete<any>(`${this.apiURL}/${cliente.id}`);
+  }
 
 }

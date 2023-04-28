@@ -1,9 +1,9 @@
-import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Cliente } from '../cliente';
-import { ClientesService } from '../../clientes.service';
-import { Observable } from 'rxjs';
+import { ClientesService } from 'src/app/clientes.service';
 
 @Component({
   selector: 'app-clientes-form',
@@ -11,60 +11,64 @@ import { Observable } from 'rxjs';
   styleUrls: ['./clientes-form.component.css']
 })
 export class ClientesFormComponent {
+
   cliente: Cliente;
-  success: boolean = false;
-  errors: String[];
+  sucess: boolean = false;
+  erros: String[];
   id: number;
 
-  
-  constructor( private service: ClientesService,
-               private router: Router,
-               private activatedRoute : ActivatedRoute ){
+  constructor(private service: ClientesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.cliente = new Cliente();
   }
 
-  voltarParaListagem(){
-    this.router.navigate(['/clientes-lista']);
+  voltarParaListagem() {
+    this.router.navigate(['/clientes-lista'])
   }
-  
-  ngOnInit(): void{
-    let params : Observable<Params> = this.activatedRoute.params;
-    params.subscribe( urlParams => {
+
+  ngOnInit(): void {
+
+    let params: Observable<any> = this.activatedRoute.params;
+    params.subscribe(urlParams => {
       this.id = urlParams['id'];
-      if(this.id){
+      if (this.id) {
         this.service
           .getClienteById(this.id)
-          .subscribe( response => this.cliente = response,
-                      errorResponse => this.cliente = new Cliente()
-          )
+          .subscribe({
+            next: response => this.cliente = response,
+            error: errorResponse => this.cliente = new Cliente()
+          })
       }
     })
   }
 
-  onSubmit(){
-    if(this.id){
-      this.service
-        .atualizar(this.cliente)
-        .subscribe(response => {
-          this.success = true;
-          this.errors = [];
-        }, errorResponse => {
-          this.errors = ['Erro ao atualizar o cliente.']
+  onSubmit() {
+    if (this.id) {
+      this.service.atualizar(this.cliente)
+        .subscribe({
+          next: response => {
+            this.sucess = true;
+            this.erros = [];
+          },
+          error: errorResponse => {
+            this.erros = ['Erro ao atualizar o cliente.']
+          }
         })
-
-    }else{
-      this.service
-        .salvar(this.cliente)
-        .subscribe( reponse => {
-            this.success = true;
-            this.errors = [];
-            this.cliente = reponse;
-        }, errorResponse => {
-          this.success = false;
-          this.errors = errorResponse.error.errors;
-          
-        }
-      );
+    } else {
+      this.service.salvar(this.cliente)
+        .subscribe({
+          next: response => {
+            this.sucess = true;
+            this.erros = [];
+            this.cliente = response;
+          },
+          error: errorResponse => {
+            this.sucess = false;
+            this.erros = errorResponse.error.errors;
+          }
+        })
     }
   }
+
 }

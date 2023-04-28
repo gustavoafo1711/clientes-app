@@ -1,80 +1,70 @@
-<!--Cabeçalho do Formulário-->
 <h1 class="mt-4">Clientes</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro'}}</li>
     </ol>
-
-    <!--Container principal-->
+    
     <div class="container">
         
-        <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
-
-            <!--Criar mensagens de envio do formulário-->
+        <form #clienteform="ngForm" (ngSubmit)="onSubmit()">
+            
             <div class="row">
                 <div class="col-md-12">
-                    <!--Alerta de Sucesso-->
-                    <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    <div class="alert alert-success" role="alert" *ngIf="sucess == true">
                         Cliente salvo/atualizado com sucesso!
                     </div>
-                    <!--Alerta de Erro-->
-                    <div class="alert alert-danger" role="alert" *ngFor="let msgErro of errors">
-                        {{ msgErro }}
+                    <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+                        {{ erro }}
                     </div>
                 </div>
             </div>
 
-            <!--ID do Cliente-->
             <div class="row" *ngIf="cliente.id">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>ID:</label>
-                        <input type="text" class="form-control" name="id"
-                                    [ngModel]="cliente.id" disabled="true" />
+                        <input type="text" class="form-control" [ngModel]="cliente.id" 
+                                        name="id" disabled="true">
                     </div>
                 </div>
-                <!--Data do Cadastro do Cliente-->
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Data Cadastro:</label>
-                        <input type="text" class="form-control" name="dataCadastro"
-                                    [ngModel]="cliente.dataCadastro" disabled="true" />
+                        <input type="text" class="form-control" [ngModel]="cliente.dataCadastro" 
+                                        name="dataCadastro" disabled="true">
                     </div>
                 </div>
-            </div>
-            <!--Nome do Cliente-->
+                </div>
+            
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nome: *</label>
-                        <input type="text" class="form-control" 
-                                    [(ngModel)]="cliente.nome" name="nome" />
+                        <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome">
                     </div>
                 </div>
-                <!--CPF do Cliente-->                
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>CPF: *</label>
-                        <input type="text" class="form-control"
-                                    [(ngModel)]="cliente.cpf" name="cpf" />
+                        <input type="text" class="form-control" [(ngModel)]="cliente.cpf"
+                                        name="cpf">
                     </div>
-                </div>    
+                </div>
             </div>
-            
+
             <div class="row">
-                <!--Botão Salvar-->
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
                         <i class="fa fa-save"></i> Salvar
                     </button>
-                
-                <!--Botão Atualizar-->
+
                     <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
-                        <i class="fas fa-retweet"></i> Atualizar
+                        <i class="fas fa-sync-alt"></i> Atualizar
                     </button>
                 
-                <!--Botão Voltar-->
                     <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
-                        <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                        <i class="far fa-arrow-alt-circle-left"></i> Voltar
                     </button>
                 </div>
             </div>

@@ -19,7 +19,8 @@ import { ServicoPrestadoListaComponent } from './servico-prestado-lista/servico-
     ServicoPrestadoRoutingModule,
     FormsModule,
     RouterModule
-  ], exports: [
+  ],
+  exports: [
     ServicoPrestadoFormComponent,
     ServicoPrestadoListaComponent
   ]

@@ -1,30 +1,28 @@
 <h1 class="mt4">Serviço Prestado</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Consulta</li>
+    <li class="breadcrumb-bitem active">Consulta</li>
 </ol>
+
 <div class="container">
     <form #consultaForm="ngForm" (submit)="consultar()">
         <div class="row">
             <div class="col-md-6">
-                <label for="inputNome">Nome Cliente:</label>
-                <input type="text"[(ngModel)]="nome" 
-                        name="nome" class="form-control"
-                        id="inputNome">
+                <label for="inputNome">Nome do Cliente:</label>
+                <input type="text" class="form-control" id="inputNome"
+                        [(ngModel)]="nome" name="nome">
             </div>
 
             <div class="col-md-6">
                 <label for="inputMes">Mês:</label>
-                <select [(ngModel)]="mes" class="form-control" name="mes">
+                <select [(ngModel)]="mes" name="mes" class="form-control">
                     <option value="">Selecione ...</option>
-                    <option *ngFor="let mes of meses" [value]="mes">
-                        {{ mes }}
-                    </option>
+                    <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>
                 </select>
             </div>
+
         </div>
-
+        
         <br>
-
         <div class="row">
             <div class="col-md-3">
                 <button type="submit" class="btn btn-primary">

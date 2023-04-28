@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
+import { ClientesService } from 'src/app/clientes.service';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -16,8 +16,9 @@ export class ClientesListaComponent {
   mensagemSucesso: string;
   mensagemErro: string;
 
-  constructor( private service: ClientesService,
-               private router: Router ){ }
+  constructor(
+    private service: ClientesService,
+    private router: Router){ }
 
   ngOnInit(): void{
     this.service.getClientes()
@@ -25,7 +26,7 @@ export class ClientesListaComponent {
   }
 
   novoCadastro(){
-    this.router.navigate(['/clientes-form']);
+    this.router.navigate(['/clientes-form'])
   }
 
   preparaDelecao(cliente: Cliente){
@@ -33,14 +34,12 @@ export class ClientesListaComponent {
   }
 
   deletarCliente(){
-    this.service
-      .deletar(this.clienteSelecionado)
-      .subscribe( response => {
-        this.mensagemSucesso = 'Cliente deletado com sucesso.'
-        this.ngOnInit();
-        },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.'
-        )
+    this.service.deletar(this.clienteSelecionado)
+                .subscribe({
+                  next: response => {this.mensagemSucesso = 'Cliente deletado com sucesso.'
+                                     this.ngOnInit()},
+                  error: errorResponse => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.'
+                })
   }
 
 }

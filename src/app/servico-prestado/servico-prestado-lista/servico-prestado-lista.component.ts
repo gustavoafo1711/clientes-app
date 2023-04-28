@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ServicoPrestadoBusca } from './servicoPrestadoBusca';
+import { ServicoPrestadoService } from 'src/app/servico-prestado.service';
 
 @Component({
   selector: 'app-servico-prestado-lista',
@@ -10,14 +12,15 @@ export class ServicoPrestadoListaComponent {
   nome: string;
   mes: number;
   meses: number[];
+  lista: ServicoPrestadoBusca[];
 
-constructor(){
-  this.meses = [1,2,3,4,5,6,7,8,9,10,11,12]
-}
+  constructor(private service: ServicoPrestadoService) {
+    this.meses = [1,2,3,4,5,6,7,8,9,10,11,12];
+  }
 
-consultar(){
-  console.log('Nome: ', this.nome, ', Mês: ',this.mes)
-}
-
+  consultar() {
+    this.service.buscar(this.nome, this.mes)
+      .subscribe({next: response => this.lista = response})
+  }
 
 }

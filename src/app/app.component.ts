@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 export class AppComponent implements AfterViewInit{
   title = 'clientes-app';
 
+  
   ngAfterViewInit(){
     (function($) {
       "use strict";
@@ -32,5 +33,3 @@ export class AppComponent implements AfterViewInit{
   }
 
 }
-
-
