@@ -24,7 +24,7 @@ export class ClientesFormComponent {
   }
 
   voltarParaListagem() {
-    this.router.navigate(['/clientes-lista'])
+    this.router.navigate(['/clientes/lista'])
   }
 
   ngOnInit(): void {
