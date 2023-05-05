@@ -11,6 +11,10 @@
                                 </h3>
                             </div>
                             <div class="card-body">
+                                <div class="alert alert-success" *ngIf="mensagemSucesso">
+                                    {{ mensagemSucesso }}
+                                </div>
+
                                 <div class="alert alert-danger" *ngIf="loginError">
                                     Login e/ou senha incorreto(a).
                                 </div>
@@ -33,7 +37,8 @@
                                             <i class="fas fa-share"></i> Enviar
                                         </button>
 
-                                        <button type="button" class="btn btn-success mr-1" *ngIf="cadastrando">
+                                        <button type="button" class="btn btn-success mr-1" 
+                                                (click)="cadastrar()" *ngIf="cadastrando">
                                             <i class="fas fa-plus"></i> Cadastrar
                                         </button>
 
