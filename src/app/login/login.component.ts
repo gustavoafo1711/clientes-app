@@ -21,7 +21,18 @@ export class LoginComponent {
                private authService: AuthService ) { }
 
   onSubmit() {
-    this.router.navigate(['/home']);
+    this.authService
+          .tentarLogar(this.username, this.password)
+          .subscribe({
+            next: response => {
+              console.log(response)
+              this.router.navigate(['/home']);
+            },
+            error: errorReponse => {
+              this.errors = ['Usuário e/ou senha incorreto(s).']
+            }
+          })
+
   }
 
   preparaCadastrar(event: { preventDefault: () => void; }) {
