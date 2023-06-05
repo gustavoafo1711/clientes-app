@@ -15,7 +15,7 @@ export class LoginComponent {
   password: string;
   cadastrando: boolean;
   mensagemSucesso: string;
-  errors: String[];
+  errors: string[];
 
   constructor( private router: Router,
                private authService: AuthService ) { }
@@ -26,7 +26,7 @@ export class LoginComponent {
           .subscribe({
             next: response => {
               const access_token = JSON.stringify(response);
-              localStorage.setItem('token_de_acesso', access_token);
+              localStorage.setItem('access_token', access_token);
               this.router.navigate(['/home']);
             },
             error: errorReponse => {
